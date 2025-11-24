@@ -5,6 +5,7 @@ This tests the core Python classes independent of Ren'Py.
 """
 
 import random
+import sys
 
 class Card:
     """Base class for cards in the deck builder"""
@@ -380,4 +381,4 @@ def run_all_tests():
 
 if __name__ == "__main__":
     success = run_all_tests()
-    exit(0 if success else 1)
+    sys.exit(0 if success else 1)
