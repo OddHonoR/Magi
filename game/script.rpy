@@ -1,5 +1,12 @@
 ## The script of the game goes in this file.
 
+## Define background images
+image bg black = "images/bg_black.png"
+image bg forest = "images/bg_forest.png"
+image bg cave = "images/bg_cave.png"
+image bg boss_room = "images/bg_boss_room.png"
+image bg victory = "images/bg_victory.png"
+
 ## The game starts here.
 
 label start:
@@ -198,21 +205,19 @@ label combat_encounter:
     # Combat loop
     label combat_loop:
         
-        show screen combat_ui
+        # Use call screen for proper Ren'Py interaction
+        call screen combat_ui
         
-        # Player turn
-        $ player_action = ui.interact()
+        $ player_action = _return
         
         if player_action == "end_turn":
             # Player ends turn
-            hide screen combat_ui
             
             # Enemy turn
             "The [current_enemy.name] attacks!"
             $ current_enemy.execute_intent(player)
             
             if player.hp <= 0:
-                hide screen combat_ui
                 $ combat_active = False
                 return
             
@@ -246,7 +251,6 @@ label combat_encounter:
                 
                 # Check if enemy is defeated
                 if current_enemy.hp <= 0:
-                    hide screen combat_ui
                     $ combat_active = False
                     return
             else:
