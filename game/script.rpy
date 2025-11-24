@@ -11,6 +11,23 @@ image bg victory = "images/bg_victory.png"
 
 label start:
     
+    scene bg black
+    with dissolve
+    
+    "Welcome to Magi!"
+    
+    menu:
+        "Choose your game mode:"
+        
+        "Pilgrimage Journey - Travel to the holy city of Magi":
+            jump start_journey
+            
+        "Combat Deck Builder - Classic card combat (original game)":
+            jump start_combat_game
+
+label start_combat_game:
+    """Original combat-focused deck builder game"""
+    
     # Initialize the player
     $ player = Player("Hero")
     $ player.deck = create_starter_deck()
